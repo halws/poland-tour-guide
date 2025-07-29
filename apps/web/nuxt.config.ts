@@ -8,6 +8,14 @@ export default defineNuxtConfig({
     port: 3001
   },
   ssr: false,
+  nitro: {
+    prerender: {
+      routes: ['/sitemap.xml']
+    }
+  },
+  app: {
+    baseURL: process.env.NODE_ENV === 'production' ? '/poland-tour-guide/' : '/',
+  },
   runtimeConfig: {
     public: {
       serverURL: process.env.NUXT_PUBLIC_SERVER_URL,
@@ -26,6 +34,9 @@ export default defineNuxtConfig({
       useCookie: true,
       cookieKey: 'i18n_redirected',
       redirectOn: 'root'
+    },
+    precompile: {
+      strictMessage: false
     },
     vueI18n: './i18n.config.ts'
   }
